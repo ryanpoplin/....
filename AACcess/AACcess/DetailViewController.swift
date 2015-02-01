@@ -49,13 +49,14 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
                 
                 self.textView.delegate = self
                 
-                var shortCut = detail.valueForKey("shortCut")!.description + " "
+                var shortCut = " " + detail.valueForKey("shortCut")!.description + " "
                 var currentValue = textData + shortCut
                 text.insertText(String(currentValue))
                 
                 self.textView.delegate = nil
                 
             }
+            
         }
         
     }
