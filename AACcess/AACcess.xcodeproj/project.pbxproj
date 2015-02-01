@@ -18,6 +18,7 @@
 		5A6B903F1A7C3C1B0032D654 /* text-analyzer.js in Resources */ = {isa = PBXBuildFile; fileRef = 5A6B903E1A7C3C1B0032D654 /* text-analyzer.js */; };
 		5A6B90451A7C3C9A0032D654 /* libKeenClient-Aggregate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A6B90441A7C3C9A0032D654 /* libKeenClient-Aggregate.a */; };
 		5A6B904B1A7C3D350032D654 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A6B904A1A7C3D350032D654 /* CoreLocation.framework */; };
+		5AAD300E1A7DC5E300EDAD99 /* testObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAD300D1A7DC5E300EDAD99 /* testObjC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,9 @@
 		5A6B90441A7C3C9A0032D654 /* libKeenClient-Aggregate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libKeenClient-Aggregate.a"; sourceTree = "<group>"; };
 		5A6B90461A7C3CC30032D654 /* AACcess-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AACcess-Bridging-Header.h"; sourceTree = "<group>"; };
 		5A6B904A1A7C3D350032D654 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		5A8A9D131A7DBE8500065267 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
+		5AAD300C1A7DC5E300EDAD99 /* testObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testObjC.h; sourceTree = "<group>"; };
+		5AAD300D1A7DC5E300EDAD99 /* testObjC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testObjC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,9 @@
 				5A6B90271A7BFBCF0032D654 /* LaunchScreen.xib */,
 				5A6B901B1A7BFBCF0032D654 /* AACcess.xcdatamodeld */,
 				5A6B90171A7BFBCF0032D654 /* Supporting Files */,
+				5A8A9D131A7DBE8500065267 /* MyPlayground.playground */,
+				5AAD300C1A7DC5E300EDAD99 /* testObjC.h */,
+				5AAD300D1A7DC5E300EDAD99 /* testObjC.m */,
 			);
 			path = AACcess;
 			sourceTree = "<group>";
@@ -250,6 +257,7 @@
 				5A6B901A1A7BFBCF0032D654 /* AppDelegate.swift in Sources */,
 				5A6B901D1A7BFBCF0032D654 /* AACcess.xcdatamodeld in Sources */,
 				5A6B901F1A7BFBCF0032D654 /* MasterViewController.swift in Sources */,
+				5AAD300E1A7DC5E300EDAD99 /* testObjC.m in Sources */,
 				5A6B90211A7BFBCF0032D654 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,6 +466,7 @@
 				5A6B903A1A7BFBCF0032D654 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5A6B903B1A7BFBCF0032D654 /* Build configuration list for PBXNativeTarget "AACcessTests" */ = {
 			isa = XCConfigurationList;
@@ -466,6 +475,7 @@
 				5A6B903D1A7BFBCF0032D654 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

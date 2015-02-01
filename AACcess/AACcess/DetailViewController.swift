@@ -36,11 +36,13 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
             
             if let text = self.textView {
                 
+                println("TextArea Text: " + textData)
+                
                 var shortCut = detail.valueForKey("shortCut")!.description + " "
-                println(shortCut)
-                println(text)
-                // ...
-                text.text = text.text.stringByAppendingString(textData + " " + shortCut)
+                
+                println("Shortcut: " + shortCut)
+                
+                // text.text = text.text.stringByAppendingString(textData + " " + shortCut)
                 
             }
         }
