@@ -36,13 +36,13 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
             
             if let text = self.textView {
                 
-                println("TextArea Text: " + textData)
+                self.textView.delegate = self
                 
-                var shortCut = detail.valueForKey("shortCut")!.description + " "
+                var shortCut = " " + detail.valueForKey("shortCut")!.description + " "
+                var currentValue = textData + shortCut
+                text.insertText(String(currentValue))
                 
-                println("Shortcut: " + shortCut)
-                
-                // text.text = text.text.stringByAppendingString(textData + " " + shortCut)
+                self.textView.delegate = nil
                 
             }
         }
@@ -52,8 +52,6 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
     override func viewWillAppear(animated: Bool) {
         
         super.viewDidAppear(animated)
-        
-        textView.delegate = self
         
         clearButton.exclusiveTouch = true
         clearButton.layer.cornerRadius = 5
@@ -72,7 +70,6 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
         
         UIApplication.sharedApplication().idleTimerDisabled = true
         
-        textView.delegate = self
         self.automaticallyAdjustsScrollViewInsets = false
         textView?.becomeFirstResponder()
         
