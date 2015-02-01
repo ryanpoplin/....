@@ -40,7 +40,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     // ...
     func insertNewObject(sender: AnyObject) {
         
-        // if textData != "" {
+        // add more concise functionality here...
+        if textData != "" {
         
         let context = self.fetchedResultsController.managedObjectContext
         let entity = self.fetchedResultsController.fetchRequest.entity!
@@ -60,7 +61,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             abort()
         }
             
-        // }
+        }
     }
 
     // MARK: - Segues
