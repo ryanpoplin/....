@@ -11,12 +11,17 @@ import AVFoundation
 import QuartzCore
 import JavaScriptCore
 
+public var textData: String! = ""
+
 class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthesizerDelegate {
     
     internal let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-    internal var textViewness: String = ""
     internal var speechPaused: Bool = false
     internal var synthesizer: AVSpeechSynthesizer!
+    
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var clearButton: UIButton!
+    @IBOutlet weak var speakAndPauseButton: UIButton!
     
     var detailItem: AnyObject? {
         didSet {
@@ -24,27 +29,27 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
             self.configureView()
         }
     }
-
+    
     func configureView() {
-        // Update the user interface for the detail item.
-//        if let detail: AnyObject = self.detailItem {
-//            if let label = self.detailDescriptionLabel {
-//                label.text = detail.valueForKey("timeStamp")!.description
-//            }
-//        }
+                
+        if let detail: AnyObject = self.detailItem {
+            
+            if let text = self.textView {
+                
+                text.text = detail.valueForKey("shortCut")!.description + " "
+                
+                println(textData)
+                
+            }
+        }
         
     }
-
-    // OUTLETS...
-    
-    @IBOutlet weak var textView: UITextView!
-    
-    @IBOutlet weak var clearButton: UIButton!
-    @IBOutlet weak var speakAndPauseButton: UIButton!
     
     override func viewWillAppear(animated: Bool) {
         
         super.viewDidAppear(animated)
+        
+        textView.delegate = self
         
         clearButton.exclusiveTouch = true
         clearButton.layer.cornerRadius = 5
@@ -57,9 +62,9 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
         
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view, typically from a nib.
-        
         self.configureView()
+        
+        // Do any additional setup after loading the view, typically from a nib.
         
         UIApplication.sharedApplication().idleTimerDisabled = true
         
@@ -84,6 +89,9 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
         var textString: NSString = textView.text
         var charSet: NSCharacterSet = NSCharacterSet.whitespaceAndNewlineCharacterSet()
         var trimmedString: NSString = textString.stringByTrimmingCharactersInSet(charSet)
+                
+        textData = String(trimmedString)
+        println(textData)
         
         if trimmedString.length == 0 {
             
@@ -104,7 +112,9 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
         speakAndPauseButton.enabled = false
         
         self.synthesizer.stopSpeakingAtBoundary(.Immediate)
-    
+        
+        textData = ""
+        
     }
     
     @IBAction func speakAndPauseAction(sender: UIButton) {
@@ -210,4 +220,3 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
     }
 
 }
-
