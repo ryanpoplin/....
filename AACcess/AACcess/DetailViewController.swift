@@ -39,7 +39,8 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
                 var shortCut = detail.valueForKey("shortCut")!.description + " "
                 println(shortCut)
                 println(text)
-                println(text.text)
+                // ...
+                text.text = text.text.stringByAppendingString(textData + " " + shortCut)
                 
             }
         }
