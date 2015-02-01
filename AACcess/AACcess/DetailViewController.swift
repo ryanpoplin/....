@@ -23,32 +23,6 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var speakAndPauseButton: UIButton!
     
-    var detailItem: AnyObject? {
-        didSet {
-            // Update the view.
-            self.configureView()
-        }
-    }
-    
-    func configureView() {
-                
-        if let detail: AnyObject = self.detailItem {
-            
-            if let text = self.textView {
-                
-                self.textView.delegate = self
-                
-                var shortCut = " " + detail.valueForKey("shortCut")!.description + " "
-                var currentValue = textData + shortCut
-                text.insertText(String(currentValue))
-                
-                self.textView.delegate = nil
-                
-            }
-        }
-        
-    }
-    
     override func viewWillAppear(animated: Bool) {
         
         super.viewDidAppear(animated)
@@ -57,6 +31,32 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
         clearButton.layer.cornerRadius = 5
         speakAndPauseButton.exclusiveTouch = true
         speakAndPauseButton.layer.cornerRadius = 5
+        
+    }
+    
+    var detailItem: AnyObject? {
+        didSet {
+            // Update the view.
+            self.configureView()
+        }
+    }
+    
+    func configureView() {
+        
+        if let detail: AnyObject = self.detailItem {
+            
+            if let text = self.textView {
+                
+                self.textView.delegate = self
+                
+                var shortCut = detail.valueForKey("shortCut")!.description + " "
+                var currentValue = textData + shortCut
+                text.insertText(String(currentValue))
+                
+                self.textView.delegate = nil
+                
+            }
+        }
         
     }
     
@@ -70,6 +70,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
         
         UIApplication.sharedApplication().idleTimerDisabled = true
         
+        self.textView.delegate = self
         self.automaticallyAdjustsScrollViewInsets = false
         textView?.becomeFirstResponder()
         
@@ -90,7 +91,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
         var textString: NSString = textView.text
         var charSet: NSCharacterSet = NSCharacterSet.whitespaceAndNewlineCharacterSet()
         var trimmedString: NSString = textString.stringByTrimmingCharactersInSet(charSet)
-                
+        
         textData = String(trimmedString)
         println(textData)
         
@@ -107,7 +108,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
     }
     
     @IBAction func clearAction(sender: UIButton) {
-    
+        
         textView?.text = nil
         
         speakAndPauseButton.enabled = false
@@ -119,7 +120,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
     }
     
     @IBAction func speakAndPauseAction(sender: UIButton) {
-    
+        
         var textString:NSString = textView.text
         var charSet:NSCharacterSet = NSCharacterSet.whitespaceAndNewlineCharacterSet()
         var trimmedString:NSString = textString.stringByTrimmingCharactersInSet(charSet)
@@ -152,7 +153,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
             }
             
         }
-    
+        
     }
     
     func speechSynthesizer(synthesizer: AVSpeechSynthesizer!, didFinishSpeechUtterance utterance: AVSpeechUtterance!) {
@@ -219,5 +220,5 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
 }
