@@ -6,12 +6,16 @@
 //  Copyright (c) 2015 ExcepApps, Inc. All rights reserved.
 //
 
+// IMPORTED FRAMEWORKS...
 import UIKit
 import CoreData
 
-class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+// CLASS NAME AND COMFORMING DELEGATES...
+class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
+    // ...
     var detailViewController: DetailViewController? = nil
+    //
     var managedObjectContext: NSManagedObjectContext? = nil
     
     override func awakeFromNib() {
@@ -19,6 +23,14 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         self.clearsSelectionOnViewWillAppear = false
         self.preferredContentSize = CGSize(width: 320.0, height: 600.0)
     }
+    
+    internal let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    
+    // override func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        // detailViewController!.textView!.resignFirstResponder()
+        
+    // }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +99,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionInfo = self.fetchedResultsController.sections![section] as NSFetchedResultsSectionInfo
         return sectionInfo.numberOfObjects
+    
+        // ...
+    
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -204,4 +219,3 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     */
     
 }
-

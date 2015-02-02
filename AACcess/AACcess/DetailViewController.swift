@@ -49,10 +49,16 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
                 
                 self.textView.delegate = self
                 
-                var shortCut = " " + detail.valueForKey("shortCut")!.description + " "
+                var shortCut: String!
+                if self.textView.text == "" {
+                    shortCut = detail.valueForKey("shortCut")!.description + " "
+                } else {
+                    shortCut = " " + detail.valueForKey("shortCut")!.description + " "
+                }
                 var currentValue = textData + shortCut
                 text.insertText(String(currentValue))
                 
+                // ...
                 self.textView.delegate = nil
                 
             }
@@ -94,7 +100,6 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
         var trimmedString: NSString = textString.stringByTrimmingCharactersInSet(charSet)
         
         textData = String(trimmedString)
-        println(textData)
         
         if trimmedString.length == 0 {
             
