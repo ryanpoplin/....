@@ -58,7 +58,6 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
                 var currentValue = textData + shortCut
                 text.insertText(String(currentValue))
                 
-                // ...
                 self.textView.delegate = nil
                 
             }
@@ -122,6 +121,8 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
         self.synthesizer.stopSpeakingAtBoundary(.Immediate)
         
         textData = ""
+        
+        self.automaticallyAdjustsScrollViewInsets = false
         
     }
     
@@ -216,9 +217,9 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
         
         let sentenceSpoken:NSString = "sentence_spoken"
         
-        KeenClient.sharedClient().addEvent(dataDic, toEventCollection: sentenceSpoken, error: nil)
+        // KeenClient.sharedClient().addEvent(dataDic, toEventCollection: sentenceSpoken, error: nil)
         
-        KeenClient.sharedClient().uploadWithFinishedBlock({ (Void) -> Void in })
+        // KeenClient.sharedClient().uploadWithFinishedBlock({ (Void) -> Void in })
         
     }
     

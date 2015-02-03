@@ -6,17 +6,16 @@
 //  Copyright (c) 2015 ExcepApps, Inc. All rights reserved.
 //
 
-// IMPORTED FRAMEWORKS...
 import UIKit
 import CoreData
 
-// CLASS NAME AND COMFORMING DELEGATES...
-class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
+// ...
+class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
     // ...
     var detailViewController: DetailViewController? = nil
-    //
     var managedObjectContext: NSManagedObjectContext? = nil
+    // ...
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,12 +25,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     
     internal let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
-    // override func scrollViewDidScroll(scrollView: UIScrollView) {
-        
-        // detailViewController!.textView!.resignFirstResponder()
-        
-    // }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,8 +33,11 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
         self.navigationItem.rightBarButtonItem = addButton
+        
         let controllers = self.splitViewController!.viewControllers
+        
         self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
+    
     }
     
     override func didReceiveMemoryWarning() {
@@ -79,6 +75,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     // MARK: - Segues
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // ...
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow() {
                 let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as NSManagedObject
@@ -93,23 +90,47 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     // MARK: - Table View
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        
+        // section sum...
         return self.fetchedResultsController.sections?.count ?? 0
+    
     }
     
+    // UITABLEVIEWDELEGATE PROTOCOL...
+    
+    //
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        // CREATE AN ARTIFICIAL EXTRA AMOUNT OF ROWS?
+        // rows in the core section...
+        // 1 section, 2 rows from the CoreData objects...
+        
+        // NSDefaultSectionInfo memory address...
         let sectionInfo = self.fetchedResultsController.sections![section] as NSFetchedResultsSectionInfo
+        
+        // println(sectionInfo.objects)
+        
+        // return shortCuts from CoreData...
         return sectionInfo.numberOfObjects
-    
-        // ...
-    
+        
     }
     
+    // ...
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        // differentiations becuase of CoreData...
+        // type of reusableCell with a particular identifier...
+        // these identifiers represent different type of cells...
+        // where's "Cell" at?
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+        
         self.configureCell(cell, atIndexPath: indexPath)
+    
         return cell
+    
     }
     
+    // EDIT ROW FUNCTIONALITY TRUE...
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
@@ -190,6 +211,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        
         switch type {
         case .Insert:
             tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
