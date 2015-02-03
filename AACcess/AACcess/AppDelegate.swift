@@ -16,15 +16,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // grab the window's root view controller
         let splitViewController = self.window!.rootViewController as UISplitViewController
+        
+        // grab the detailview's nav controller...
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as UINavigationController
+        
+        // back button for portrait mode...
         navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
+        
+        // required since you cannot connect this via the storyboard...
         splitViewController.delegate = self
         
+        // COREDATA ADDITIONS...
+        
+        // grab the masterdetail nav controller...
         let masterNavigationController = splitViewController.viewControllers[0] as UINavigationController
+        
+        // ...
         let controller = masterNavigationController.topViewController as MasterViewController
+        
+        // ...
         controller.managedObjectContext = self.managedObjectContext
+        
         return true
+    
     }
     
     func applicationWillResignActive(application: UIApplication) {

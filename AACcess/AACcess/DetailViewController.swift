@@ -50,12 +50,19 @@ class DetailViewController: UIViewController, UITextViewDelegate, AVSpeechSynthe
                 self.textView.delegate = self
                 
                 var shortCut: String!
+                
                 if textData == "" {
+                    
                     shortCut = detail.valueForKey("shortCut")!.description + " "
+                
                 } else {
+                    
                     shortCut = " " + detail.valueForKey("shortCut")!.description + " "
+                
                 }
+                
                 var currentValue = textData + shortCut
+                
                 text.insertText(String(currentValue))
                 
                 self.textView.delegate = nil

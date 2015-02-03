@@ -50,7 +50,6 @@
 		5A6B90441A7C3C9A0032D654 /* libKeenClient-Aggregate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libKeenClient-Aggregate.a"; sourceTree = "<group>"; };
 		5A6B90461A7C3CC30032D654 /* AACcess-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AACcess-Bridging-Header.h"; sourceTree = "<group>"; };
 		5A6B904A1A7C3D350032D654 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		5A8A9D131A7DBE8500065267 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +104,6 @@
 				5A6B90271A7BFBCF0032D654 /* LaunchScreen.xib */,
 				5A6B901B1A7BFBCF0032D654 /* AACcess.xcdatamodeld */,
 				5A6B90171A7BFBCF0032D654 /* Supporting Files */,
-				5A8A9D131A7DBE8500065267 /* MyPlayground.playground */,
 			);
 			path = AACcess;
 			sourceTree = "<group>";
